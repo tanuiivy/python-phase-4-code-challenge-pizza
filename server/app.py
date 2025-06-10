@@ -42,7 +42,8 @@ class DeleteRestaurant(Resource):
             return {"error": "Restaurant not found"}, 404
         db.session.delete(restaurant)
         db.session.commit()
-        return {"message": "Restaurant deleted successfully"}, 204
+        return '', 204
+
 api.add_resource(DeleteRestaurant, "/restaurants/<int:id>")
 
 class PizzaResource(Resource):
@@ -72,7 +73,7 @@ class RestaurantPizzas(Resource):
             ), 201
 
         except Exception as e:
-            return {"error": [str(e)]}, 400
+            return {"errors": [str(e)]}, 400
 
 api.add_resource(RestaurantPizzas, "/restaurant_pizzas")
 
